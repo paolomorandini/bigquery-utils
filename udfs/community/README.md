@@ -38,6 +38,7 @@ SELECT bqutil.fn.int(1.684)
 * [cw_regexp_substr_6](#cw_regexp_substr_6h-string-n-string-p-int64-o-int64-mode-string-g-string)
 * [cw_map_create](#cw_map_createkeys-any-type-vals-any-type)
 * [cw_map_get](#cw_map_getmaparray-any-type-inkey-any-type)
+* [cw_map_to_json](#cw_map_to_jsonmaparraystruct-key-string-value-string)
 * [cw_regexp_instr_2](#cw_regexp_instr_2haystack-string-needle-string)
 * [cw_regexp_instr_3](#cw_regexp_instr_3haystack-string-needle-string-start-int64)
 * [cw_regexp_instr_4](#cw_regexp_instr_3haystack-string-needle-string-p-int64-o-int64)
@@ -432,6 +433,16 @@ Given an array of struct and needle, searches an array to find struct whose key-
 SELECT bqutil.fn.cw_map_get([STRUCT(1 as key, "ABC" as value)], 1);
 
 ABC
+```
+
+### [cw_map_to_json(map ARRAY<STRUCT<key STRING, value STRING>>)](cw_map_to_json.sqlx)
+Given a map represented as an array of structs with `key` and `value` fields, convert it to a JSON object.
+
+```sql
+SELECT
+cw_map_to_json([STRUCT('a' AS key,'x' AS value), STRUCT('b' AS key,'y' AS value)]);
+
+{"a":"x","b":"y"}
 ```
 
 ### [cw_regexp_instr_2(haystack STRING, needle STRING)](cw_regexp_instr_2.sqlx)

@@ -1463,6 +1463,16 @@ generate_udf_test("cw_map_get", [
         expected_output: `"ABC"`
     },
 ]);
+
+generate_udf_test("cw_map_to_json", [
+    {
+        inputs: [
+            `STRUCT('a' AS key, 'b' AS value)`
+        ],
+        expected_output: `{"a":"b"}`
+    }
+]);
+
 generate_udf_test("cw_regexp_instr_2", [
     {
         inputs: [
